@@ -51,3 +51,22 @@ function sum(...numbers) {
 
 console.log(sum(1, 2, 3)); // Output: 6
 console.log(sum(4, 5, 6, 7)); // Output: 22 
+
+
+
+
+//callback function
+//A callback function is a function that is passed as an argument to another function and is executed after a certain event or condition is met. It allows for asynchronous programming and helps in handling events, such as user interactions or API responses.
+function add(a, b ) {
+  return a + b;
+}
+
+function multiply(a, b) {
+  return a * b;
+}
+
+function calculate(a, b, operation) {
+    return operation(a, b);
+} // Output: 8
+console.log(calculate(5, 3, add)); // Output: 8
+console.log(calculate(5, 3, multiply)); // Output: 15
