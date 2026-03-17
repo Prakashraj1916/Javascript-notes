@@ -39,5 +39,5 @@ console.log(a);   // 4
 
 // **= Exponentiation assignment
 a = 10;
-a **= 2;          // a = 10 ** 2
+a = a ** 2;          // a = 10 ** 2
 console.log(a);   // 100

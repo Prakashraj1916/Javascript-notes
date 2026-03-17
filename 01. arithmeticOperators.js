@@ -9,5 +9,6 @@ c = a - b;     // -  → Subtraction operator    // Output: 80
 c = a * b;     // *  → Multiplication operator // Output: 2000
 c = a / b;     // /  → Division operator       // Output: 5
 c = a % b;     // %  → Modulus operator        // Output: 0
+console.log(c);
 c = 2 ** 3;    // ** → Exponentiation operator // Output: 8
-
+console.log(c)
