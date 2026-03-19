@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote Eligibility Checker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 28px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .result.eligible {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+            display: block;
+        }
+        
+        .result.not-eligible {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+            display: block;
+        }
+        
+        .result.error {
+            background: #fff3cd;
+            color: #856404;
+            border: 2px solid #ffeeba;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vote Eligibility Checker</h1>
+        
+        <div class="form-group">
+            <label for="age">Enter Your Age:</label>
+            <input type="number" id="age" placeholder="Enter your age" min="0" max="150">
+        </div>
+        
+        <button onclick="checkVoteEligibility()">Check Eligibility</button>
+        
+        <div id="result" class="result"></div>
+    </div>
+
+    <script src="controls statement.js"></script>
+    
+    <script>
+        function checkVoteEligibility() {
+            const age = document.getElementById('age').value;
+            const resultDiv = document.getElementById('result');
+            
+            // Validate input
+            if (age === '' || age === null) {
+                resultDiv.textContent = "⚠️ Please enter your age!";
+                resultDiv.className = 'result error';
+                return;
+            }
+            
+            const ageNum = parseInt(age);
+            
+            // Validate age range
+            if (ageNum < 0 || ageNum > 150) {
+                resultDiv.textContent = "⚠️ Please enter a valid age!";
+                resultDiv.className = 'result error';
+                return;
+            }
+            
+            // Check vote eligibility using if...else statement
+            if (ageNum >= 18) {
+                resultDiv.textContent = "✅ You are eligible to vote!";
+                resultDiv.className = 'result eligible';
+            } else {
+                const yearsToWait = 18 - ageNum;
+                resultDiv.textContent = `❌ You are not eligible to vote yet. Come back in ${yearsToWait} year(s).`;
+                resultDiv.className = 'result not-eligible';
+            }
+        }
+        
+        // Allow pressing Enter to submit
+        document.getElementById('age').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkVoteEligibility();
+            }
+        });
+    </script>
+</body>
+</html>
